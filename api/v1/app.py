@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """ Flask Application """
+from flask import Flask
 from models import storage
 from api.v1.views import app_views
-import os
-from flask import Flask
-from flask_cors import CORS
 from flask import make_response
 from flask import jsonify
+from flask_cors import CORS
+import os
+
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
