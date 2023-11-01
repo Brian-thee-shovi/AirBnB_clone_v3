@@ -39,7 +39,6 @@ def get_city(city_id):
             return jsonify(dict_city.to_dict())
 
 
-
 @app_views.route('/cities/<city_id>', methods=['DELETE'],
                  strict_slashes=False)
 def delete_city(city_id):
@@ -74,7 +73,7 @@ def post_city(state_id):
     return make_response(jsonify(city.to_dict()), 201)
 
 
-@app_views.route('/cities/<city_id>', methods=[ 'PUT'],
+@app_views.route('/cities/<city_id>', methods=['PUT'],
                  strict_slashes=False)
 def update_city(city_id):
     """updates a given city"""
@@ -87,7 +86,7 @@ def update_city(city_id):
             return make_response(jsonify({"error": "Not a JSON"}), 400)
         re = request.get_json()
         for key, value in re.items():
-            if key not in [ 'id', 'created_at', 'updated_at']:
+            if key not in ['id', 'created_at', 'updated_at']:
                 setattr(city, key, value)
             city.save()
             return make_response(jsonify(city.to_dict()), 200)

@@ -31,7 +31,6 @@ def one_state(state_id):
             return jsonify(dict_state.to_dict())
 
 
-
 @app_views.route('/states/<state_id>',
                  strict_slashes=False,
                  methods=['DELETE'])
@@ -60,7 +59,7 @@ def post_state():
     return make_response(jsonify(state.to_dict()), 201)
 
 
-@app_views.route('/states/<state_id>', methods=[ 'PUT'], strict_slashes=False)
+@app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def update_state(state_id):
     """updates attributs from an object"""
     if state_id:
@@ -72,7 +71,7 @@ def update_state(state_id):
             return make_response(jsonify({"error": "Not a JSON"}), 400)
         re = request.get_json()
         for key, value in re.items():
-            if key not in [ 'id', 'created_at', 'updated_at']:
+            if key not in ['id', 'created_at', 'updated_at']:
                 setattr(state, key, value)
             state.save()
             return make_response(jsonify(state.to_dict()), 200)
